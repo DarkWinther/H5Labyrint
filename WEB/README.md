@@ -4,6 +4,8 @@
 Visual studio skal have Node Js development workload installeret.
 Hvis den ikke er installeret, så gå til "Tools" menuen og vælg "Get tools and features" 
 
+Node.js og Npm skal også være installeret på forhånd,  og deres executables bør findes i PATH.
+
 1. Åben H5Labyrint.sln i Visual Studio
 2. I Visual Studios "Solution explorer" - højreklik på solution og vælg "properties"
 3. Sæt "Startup project" til "multiple startup projects", og sørg for at både API og WEB er sat til "Start"
