@@ -1,6 +1,8 @@
 # WEB
 
 ## Installation
+Visual studio skal have Node Js development workload installeret.
+Hvis den ikke er installeret, så gå til "Tools" menuen og vælg "Get tools and features" 
 
 1. Åben H5Labyrint.sln i Visual Studio
 2. I Visual Studios "Solution explorer" - højreklik på solution og vælg "properties"
