@@ -5,16 +5,9 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class Labyrinth
+    public class UpdateLabyrinthDTO
     {
         public string Id { get; set; }
         public LabyrinthSpace[][] labyrinthSpaces { get; set; }
-    }
-    public enum LabyrinthSpace
-    {
-        Empty,
-        Wall,
-        Start,
-        End
     }
 }
