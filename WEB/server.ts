@@ -1,6 +1,13 @@
-import http = require('http');
-const port = process.env.port || 1337
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-}).listen(port);
+import express from 'express';
+import axios from 'axios';
+
+const port = process.env.port || 3000;
+const app = express();
+
+app.get('/', async (req, res) => {
+    const weather = await axios('http://localhost:51646/weatherforecast');
+    console.log(weather);
+    return res.send('Hello world!');
+});
+
+app.listen(port);

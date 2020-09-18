@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{D33036C6-0E04-40AE-A8C1-B4506F98BF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{D33036C6-0E04-40AE-A8C1-B4506F98BF25}"
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "WEB", "WEB\WEB.njsproj", "{9A134B82-6664-4244-8BF1-1851B37E7608}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D33036C6-0E04-40AE-A8C1-B4506F98BF25} = {D33036C6-0E04-40AE-A8C1-B4506F98BF25}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
