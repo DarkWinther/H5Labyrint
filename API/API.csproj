@@ -4,5 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.Web" Version="2.14.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
+  </ItemGroup>
+
 
 </Project>
