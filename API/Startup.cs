@@ -1,8 +1,11 @@
+using API.Models;
+using API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace API
 {
@@ -18,6 +21,14 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<LabyrinthDatabaseSettings>(
+                Configuration.GetSection(nameof(LabyrinthDatabaseSettings)));
+
+            services.AddSingleton<ILabyrinthDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<LabyrinthDatabaseSettings>>().Value);
+
+            services.AddSingleton<LabyrinthService>();
+
             services.AddControllers();
         }
 
