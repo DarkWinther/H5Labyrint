@@ -1,5 +1,7 @@
 ﻿using API.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,12 @@ namespace API.Services
 
         public Labyrinth Get(string id) =>
             _labyrinths.Find<Labyrinth>(labyrinth => labyrinth.Id == id).FirstOrDefault();
+
+        public Labyrinth GetRandom()
+        {
+            //_labyrinths.Find<Labyrinth>(labyrinth => labyrinth.Id == id).FirstOrDefault();
+            return _labyrinths.AsQueryable().Sample(1).FirstOrDefault();
+        }
 
         public Labyrinth Create(Labyrinth labyrinth)
         {

@@ -7,8 +7,6 @@ using API.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace API.Controllers
 {
     [Route("api/[controller]")]
@@ -22,13 +20,18 @@ namespace API.Controllers
             _labyrinthService = labyrinthService;
         }
 
-        // GET: api/<LabyrinthController>
+        // GET: api/labyrinth
         [HttpGet]
+        public ActionResult<Labyrinth> GetRandom() =>
+            _labyrinthService.GetRandom();
+
+        // GET: api/labyrinth/all
+        [HttpGet("all")]
         public ActionResult<List<Labyrinth>> Get() =>
             _labyrinthService.Get();
 
-        // GET api/<LabyrinthController>/5
-        [HttpGet("{id}")]
+        // GET api/labyrinth/id/{id}
+        [HttpGet("id/{id}")]
         public ActionResult<Labyrinth> Get(string id)
         {
             var labyrinth = _labyrinthService.Get(id);
@@ -39,7 +42,7 @@ namespace API.Controllers
             return labyrinth;
         }
 
-        // POST api/<LabyrinthController>
+        // POST api/labyrinth
         [HttpPost]
         public ActionResult<Labyrinth> Create(Labyrinth labyrinth)
         {
@@ -48,7 +51,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id.ToString() }, labyrinth);
         }
 
-        // PUT api/<LabyrinthController>/5
+        // PUT api/labyrinth/5
         [HttpPut("{id}")]
         public IActionResult Update(string id, Labyrinth labyrinthIn)
         {
@@ -62,7 +65,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        // DELETE api/<LabyrinthController>/5
+        // DELETE api/labyrinth/5
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
