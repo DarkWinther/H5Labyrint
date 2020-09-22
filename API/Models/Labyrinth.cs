@@ -13,8 +13,8 @@ namespace API.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [BsonElement("Name")]
-        public string LabyrinthName { get; set; }
+        /* [BsonElement("Name")]
+        public string LabyrinthName { get; set; } */
         public string Category { get; set; }
         public LabyrinthSpace[][] LabyrinthSpaces { get; set; }
     }

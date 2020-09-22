@@ -8,6 +8,6 @@ namespace API.Models
     public class UpdateLabyrinthDTO
     {
         public string Id { get; set; }
-        public LabyrinthSpace[][] labyrinthSpaces { get; set; }
+        public LabyrinthSpace[][] LabyrinthSpaces { get; set; }
     }
 }

@@ -26,3 +26,10 @@ Så vil den bruge din version af Node i stedet for den indbyggede version.
 
 
 ## MongoDb
+MongoDb skal være installeret.
+Der skal være en database med navnet "LabyrinthDb".
+På den skal der være to collections en ved navn "Labyrinths" og en anden ved navn "Statistics".
+
+Labyrinths indeholder:
+	Category
+	LabyrinthSpaces
