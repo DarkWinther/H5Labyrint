@@ -15,7 +15,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>9a134b82-6664-4244-8bf1-1851b37e7608</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>server.ts</StartupFile>
+    <StartupFile>nodemon.js</StartupFile>
     <StartWebBrowser>True</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -38,10 +38,37 @@
     <Content Include=".npmrc">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="gulpfile.js" />
+    <Content Include="nodemon.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\scss\global.scss">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\index.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\pages\home.pug">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\views\partials\head.pug">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="tsconfig.json" />
-    <None Include="server.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\scss\" />
+    <Folder Include="src\views\" />
+    <Folder Include="src\views\pages\" />
+    <Folder Include="src\views\partials\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\server.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
