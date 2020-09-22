@@ -16,7 +16,7 @@ namespace API.Models
         [BsonElement("Name")]
         public string LabyrinthName { get; set; }
         public string Category { get; set; }
-        public LabyrinthSpace[][] labyrinthSpaces { get; set; }
+        public LabyrinthSpace[][] LabyrinthSpaces { get; set; }
     }
     public enum LabyrinthSpace
     {

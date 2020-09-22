@@ -23,3 +23,6 @@ Tools > Options > Project and Solutions > Web Package Management > External Web 
 og sørge for at `${PATH}` ligger oven over `${VSInstalledExternalTools}`
 
 Så vil den bruge din version af Node i stedet for den indbyggede version.
+
+
+## MongoDb

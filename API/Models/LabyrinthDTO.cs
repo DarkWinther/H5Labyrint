@@ -7,6 +7,6 @@ namespace API.Models
 {
     public class LabyrinthDTO
     {
-        public LabyrinthSpace[][] labyrinthSpaces { get; set; }
+        public LabyrinthSpace[][] LabyrinthSpaces { get; set; }
     }
 }
