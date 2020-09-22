@@ -60,12 +60,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
+    <Folder Include="src\models\" />
+    <Folder Include="src\scripts\" />
+    <Folder Include="src\scripts\components\" />
+    <Folder Include="src\scripts\pages\" />
     <Folder Include="src\scss\" />
     <Folder Include="src\views\" />
     <Folder Include="src\views\pages\" />
     <Folder Include="src\views\partials\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\models\labyrinth.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\global.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\components\test.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\server.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
