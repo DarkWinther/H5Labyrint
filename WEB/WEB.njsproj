@@ -57,6 +57,9 @@
     <Content Include="src\views\partials\head.pug">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\views\partials\nav.pug">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -70,6 +73,7 @@
     <Folder Include="src\scripts\pages\" />
     <Folder Include="src\scss\" />
     <Folder Include="src\views\" />
+    <Folder Include="src\views\mixins\" />
     <Folder Include="src\views\pages\" />
     <Folder Include="src\views\partials\" />
   </ItemGroup>
@@ -84,6 +88,12 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\routes\routes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\components\labyrinthScene.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\data.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\scripts\pages\home.ts">

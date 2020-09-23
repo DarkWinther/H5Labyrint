@@ -40,8 +40,8 @@ const scripts = cb => {
             .pipe(source(`${page}.min.js`))
             .pipe(buffer())
             .pipe(uglify())
-            .pipe(dest('dist/static/js/'))
-    })
+            .pipe(dest('dist/static/js/'));
+    });
     cb();
 }
 
@@ -55,23 +55,26 @@ const watchScss = cb => {
 
 const watchJs = cb => {
     PAGES.forEach(page => {
-        const b = watchify(browserify(`dist/scripts/pages/${page}.js`));
+        const b = watchify(browserify({
+            entries: `dist/scripts/pages/${page}.js`,
+            cache: {},
+            packageCache: {}
+        }));
 
         const bundle = () => {
             b.bundle()
                 .pipe(source(`${page}.min.js`))
                 .pipe(buffer())
                 .pipe(uglify())
-                .pipe(dest('dist/static/js/'))
+                .pipe(dest('dist/static/js/'));
         };
 
         b.on('update', bundle);
-        b.on('log', gulplog.info);
+        b.on('log', log => gulplog.info(`${log} for ${page} page`));
         bundle();
-    })
+    });
     cb();
 }
-
 
 // Exporting
 exports.clean = parallel(cleanScss, cleanJs);
