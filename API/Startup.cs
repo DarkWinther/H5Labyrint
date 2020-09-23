@@ -28,6 +28,7 @@ namespace API
                 sp.GetRequiredService<IOptions<LabyrinthDatabaseSettings>>().Value);
 
             services.AddSingleton<LabyrinthService>();
+            services.AddSingleton<StatisticService>();
 
             services.AddControllers();
         }

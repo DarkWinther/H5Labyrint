@@ -18,11 +18,11 @@ namespace API.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _statistics = database.GetCollection<Statistic>(settings.LabyrinthsCollectionName);
+            _statistics = database.GetCollection<Statistic>(settings.StatisticsCollectionName);
         }
 
         public List<Statistic> Get() =>
-            _statistics.Find(labyrinth => true).ToList();
+            _statistics.Find(statistic => true).ToList();
 
         public Statistic Get(string id) =>
             _statistics.Find(statistic => statistic.Id == id).FirstOrDefault();
