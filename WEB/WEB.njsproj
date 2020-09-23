@@ -51,6 +51,9 @@
     <Content Include="src\views\pages\home.pug">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\views\pages\statistics.pug">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\views\partials\head.pug">
       <SubType>Code</SubType>
     </Content>
@@ -60,12 +63,35 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
+    <Folder Include="src\models\" />
+    <Folder Include="src\routes\" />
+    <Folder Include="src\scripts\" />
+    <Folder Include="src\scripts\components\" />
+    <Folder Include="src\scripts\pages\" />
     <Folder Include="src\scss\" />
     <Folder Include="src\views\" />
     <Folder Include="src\views\pages\" />
     <Folder Include="src\views\partials\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\models\labyrinth.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\routes\apiRoutes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\routes\index.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\routes\routes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\pages\home.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\pages\statistics.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\server.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

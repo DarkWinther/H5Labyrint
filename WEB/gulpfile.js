@@ -1,38 +1,80 @@
 /// <binding AfterBuild='build' Clean='clean' ProjectOpened='watch' />
-const { src, dest, series, watch } = require('gulp');
+const { src, dest, series, parallel, watch } = require('gulp');
 const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
 const rename = require('gulp-rename');
 const del = require('del');
+const uglify = require('gulp-uglify');
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const watchify = require('watchify');
+const gulplog = require('gulplog');
 
-const paths = {
-    scss: {
-        src: 'src/scss/**/*.scss',
-        dest: 'dist/static/css/'
-    }
+const PAGES = ['home', 'statistics'];
+
+// Cleaning
+const cleanScss = () => {
+    return del('dist/static/css/');
 };
 
+const cleanJs = () => {
+    return del('dist/static/js');
+}
+
+const clean = parallel(cleanScss, cleanJs);
+
+// Building
 const styles = () => {
-    return src(paths.scss.src)
+    return src('src/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCss())
         .pipe(rename({ suffix: ".min" }))
-        .pipe(dest(paths.scss.dest));
+        .pipe(dest('dist/static/css/'));
 };
 
-const clean = cb => {
-    del.sync('dist/static/css');
-    cb();
-};
-
-const build = series(clean, styles);
-
-const watchScss = cb => {
-    watch(paths.scss.src, build);
+const scripts = cb => {
+    PAGES.forEach(page => {
+        browserify(`dist/scripts/pages/${page}.js`)
+            .bundle()
+            .pipe(source(`${page}.min.js`))
+            .pipe(buffer())
+            .pipe(uglify())
+            .pipe(dest('dist/static/js/'))
+    })
     cb();
 }
 
-exports.clean = clean;
+const build = parallel(styles, scripts);
+
+// Watching
+const watchScss = cb => {
+    watch('src/scss/**/*.scss', styles);
+    cb();
+}
+
+const watchJs = cb => {
+    PAGES.forEach(page => {
+        const b = watchify(browserify(`dist/scripts/pages/${page}.js`));
+
+        const bundle = () => {
+            b.bundle()
+                .pipe(source(`${page}.min.js`))
+                .pipe(buffer())
+                .pipe(uglify())
+                .pipe(dest('dist/static/js/'))
+        };
+
+        b.on('update', bundle);
+        b.on('log', gulplog.info);
+        bundle();
+    })
+    cb();
+}
+
+
+// Exporting
+exports.clean = parallel(cleanScss, cleanJs);
 exports.build = build;
-exports.watch = watchScss;
-exports.default = series(build, watchScss);
+exports.watch = series(watchScss, watchJs);
+exports.default = series(clean, build);
