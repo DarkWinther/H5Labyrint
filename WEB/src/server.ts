@@ -2,7 +2,7 @@ import express from 'express';
 import initRoutes from './routes';
 
 
-const port = process.env.port || 3000;
+const PORT = process.env.port || 3000;
 const app = express();
 
 // Pug
@@ -13,6 +13,6 @@ app.use(express.static('dist/static'));
 
 initRoutes(app); // Initialize routes
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
 });

@@ -11,7 +11,7 @@ const buffer = require('vinyl-buffer');
 const watchify = require('watchify');
 const gulplog = require('gulplog');
 
-const pages = ['home', 'statistics'];
+const PAGES = ['home', 'statistics'];
 
 // Cleaning
 const cleanScss = () => {
@@ -34,7 +34,7 @@ const styles = () => {
 };
 
 const scripts = cb => {
-    pages.forEach(page => {
+    PAGES.forEach(page => {
         browserify(`dist/scripts/pages/${page}.js`)
             .bundle()
             .pipe(source(`${page}.min.js`))
@@ -54,7 +54,7 @@ const watchScss = cb => {
 }
 
 const watchJs = cb => {
-    pages.forEach(page => {
+    PAGES.forEach(page => {
         const b = watchify(browserify(`dist/scripts/pages/${page}.js`));
 
         const bundle = () => {
