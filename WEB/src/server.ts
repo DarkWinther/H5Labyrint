@@ -1,4 +1,6 @@
 import express from 'express';
+import initRoutes from './routes';
+
 
 const port = process.env.port || 3000;
 const app = express();
@@ -9,9 +11,7 @@ app.set('views', 'src/views');
 
 app.use(express.static('dist/static'));
 
-app.get('/', async (req, res) => {
-    return res.render('pages/home');
-});
+initRoutes(app); // Initialize routes
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

@@ -1,4 +1,4 @@
-/// <binding AfterBuild='default' Clean='clean' ProjectOpened='watch' />
+/// <binding AfterBuild='build' Clean='clean' ProjectOpened='watch' />
 const { src, dest, series, parallel, watch } = require('gulp');
 const sass = require('gulp-sass');
 const cleanCss = require('gulp-clean-css');
@@ -8,21 +8,14 @@ const uglify = require('gulp-uglify');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
+const watchify = require('watchify');
+const gulplog = require('gulplog');
 
-const paths = {
-    scss: {
-        src: 'src/scss/**/*.scss',
-        dest: 'dist/static/css/'
-    }
-    //js: {
-    //    src: 'dist/scripts/**/*.js',
-    //    dest: 'dist/static/js/'
-    //}
-};
+const pages = ['home', 'statistics'];
 
 // Cleaning
 const cleanScss = () => {
-    return del(paths.scss.dest);
+    return del('dist/static/css/');
 };
 
 const cleanJs = () => {
@@ -33,32 +26,49 @@ const clean = parallel(cleanScss, cleanJs);
 
 // Building
 const styles = () => {
-    return src(paths.scss.src)
+    return src('src/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCss())
         .pipe(rename({ suffix: ".min" }))
-        .pipe(dest(paths.scss.dest));
+        .pipe(dest('dist/static/css/'));
 };
 
-const scripts = () => {
-    return browserify('dist/scripts/global.js')
-        .bundle()
-        .pipe(source('bundle.min.js'))
-        .pipe(buffer())
-        .pipe(uglify())
-        .pipe(dest('dist/static/js/'));
+const scripts = cb => {
+    pages.forEach(page => {
+        browserify(`dist/scripts/pages/${page}.js`)
+            .bundle()
+            .pipe(source(`${page}.min.js`))
+            .pipe(buffer())
+            .pipe(uglify())
+            .pipe(dest('dist/static/js/'))
+    })
+    cb();
 }
 
 const build = parallel(styles, scripts);
 
 // Watching
 const watchScss = cb => {
-    watch(paths.scss.src, styles);
+    watch('src/scss/**/*.scss', styles);
     cb();
 }
 
 const watchJs = cb => {
-    watch('dist/scripts/**/*.js', scripts);
+    pages.forEach(page => {
+        const b = watchify(browserify(`dist/scripts/pages/${page}.js`));
+
+        const bundle = () => {
+            b.bundle()
+                .pipe(source(`${page}.min.js`))
+                .pipe(buffer())
+                .pipe(uglify())
+                .pipe(dest('dist/static/js/'))
+        };
+
+        b.on('update', bundle);
+        b.on('log', gulplog.info);
+        bundle();
+    })
     cb();
 }
 
