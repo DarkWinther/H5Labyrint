@@ -26,3 +26,17 @@ Så vil den bruge din version af Node i stedet for den indbyggede version.
 
 
 ## MongoDb
+MongoDb skal være installeret.
+Der skal være en database med navnet "LabyrinthDb" på port 27017.
+På den skal der være to collections en ved navn "Labyrinths" og en anden ved navn "Statistics".
+
+Labyrinths indeholder:
+	Category				string		Sværhedsgrad.
+	LabyrinthSpaces			enum[][]	Labyrintens layout. 0 er tomme felter, 1 er vægge, 2 er startpunktet, 3 er målet.
+
+Statistics indeholder:
+	LabyrinthId				string		Id'en på labyrinten forsøget var på.
+	LabyrinthGrid			int[][]		Antallet af skridt på de forskellige felter.
+	SecondsSpentOnAttempt	int			Antallet af sekunder der blev brugt på forsøget.
+
+Der må ikke være koloner med andre navne.

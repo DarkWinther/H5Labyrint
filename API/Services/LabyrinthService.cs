@@ -27,11 +27,8 @@ namespace API.Services
         public Labyrinth Get(string id) =>
             _labyrinths.Find<Labyrinth>(labyrinth => labyrinth.Id == id).FirstOrDefault();
 
-        public Labyrinth GetRandom()
-        {
-            //_labyrinths.Find<Labyrinth>(labyrinth => labyrinth.Id == id).FirstOrDefault();
-            return _labyrinths.AsQueryable().Sample(1).FirstOrDefault();
-        }
+        public Labyrinth GetRandom() => 
+            _labyrinths.AsQueryable().Sample(1).FirstOrDefault();
 
         public Labyrinth Create(Labyrinth labyrinth)
         {

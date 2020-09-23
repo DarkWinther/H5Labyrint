@@ -8,6 +8,7 @@ namespace API.Models
     public class LabyrinthDatabaseSettings : ILabyrinthDatabaseSettings
     {
         public string LabyrinthsCollectionName { get; set; }
+        public string StatisticsCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
@@ -15,6 +16,7 @@ namespace API.Models
     public interface ILabyrinthDatabaseSettings
     {
         string LabyrinthsCollectionName { get; set; }
+        string StatisticsCollectionName { get; set; }
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
     }

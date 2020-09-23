@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Models;
+using API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,36 +13,65 @@ namespace API.Controllers
     [ApiController]
     public class StatisticController : ControllerBase
     {
-        // GET: api/Statistic
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly StatisticService _statisticService;
+
+        public StatisticController(StatisticService statisticService)
         {
-            return new string[] { "value1", "value2" };
+            _statisticService = statisticService;
         }
 
+        // GET: api/Statistic
+        [HttpGet]
+        public ActionResult<List<Statistic>> Get() =>
+            _statisticService.Get();
+
         // GET: api/Statistic/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public ActionResult<Statistic> Get(string id)
         {
-            return "value";
+            var statistic = _statisticService.Get(id);
+
+            if (statistic == null)
+                return NotFound();
+
+            return statistic;
         }
 
         // POST: api/Statistic
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Statistic> Create(Statistic statistic)
         {
+            _statisticService.Create(statistic);
+
+            return CreatedAtRoute("GetStatistic", new { id = statistic.Id.ToString() }, statistic);
         }
 
         // PUT: api/Statistic/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Update(string id, Statistic statisticIn)
         {
+            var statistic = _statisticService.Get(id);
+
+            if (statistic == null)
+                return NotFound();
+
+            _statisticService.Update(id, statisticIn);
+
+            return NoContent();
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Statistic/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            var statistic = _statisticService.Get(id);
+
+            if (statistic == null)
+                return NotFound();
+
+            _statisticService.Remove(statistic.Id);
+
+            return NoContent();
         }
     }
 }
