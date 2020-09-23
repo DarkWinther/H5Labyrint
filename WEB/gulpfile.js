@@ -14,15 +14,9 @@ const gulplog = require('gulplog');
 const PAGES = ['home', 'statistics'];
 
 // Cleaning
-const cleanScss = () => {
-    return del('dist/static/css/');
+const clean = () => {
+    return del('dist/static/');
 };
-
-const cleanJs = () => {
-    return del('dist/static/js');
-}
-
-const clean = parallel(cleanScss, cleanJs);
 
 // Building
 const styles = () => {
@@ -45,7 +39,11 @@ const scripts = cb => {
     cb();
 }
 
-const build = parallel(styles, scripts);
+const favicon = () => {
+    return src('src/favicon.ico').pipe(dest('dist/static/'));
+};
+
+const build = parallel(styles, scripts, favicon);
 
 // Watching
 const watchScss = cb => {
@@ -77,7 +75,7 @@ const watchJs = cb => {
 }
 
 // Exporting
-exports.clean = parallel(cleanScss, cleanJs);
+exports.clean = clean;
 exports.build = build;
 exports.watch = series(watchScss, watchJs);
 exports.default = series(clean, build);

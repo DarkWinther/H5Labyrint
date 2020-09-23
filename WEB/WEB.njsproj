@@ -42,6 +42,7 @@
     <Content Include="nodemon.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\favicon.ico" />
     <Content Include="src\scss\global.scss">
       <SubType>Code</SubType>
     </Content>
