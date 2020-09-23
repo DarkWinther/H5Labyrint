@@ -86,6 +86,9 @@
     <TypeScriptCompile Include="src\routes\routes.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\components\game.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\scripts\pages\home.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

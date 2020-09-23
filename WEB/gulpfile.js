@@ -72,7 +72,6 @@ const watchJs = cb => {
     cb();
 }
 
-
 // Exporting
 exports.clean = parallel(cleanScss, cleanJs);
 exports.build = build;
