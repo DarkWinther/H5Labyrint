@@ -1,6 +1,47 @@
 body {
+    display: flex;
+    flex-flow: column nowrap;
     margin: 0;
     height: 100vh;
     background-color: darkslategrey;
     color: white;
+}
+
+nav {
+    background-color: midnightblue;
+    z-index: 1;
+
+    ul {
+        padding: 20px;
+        margin: 0;
+        list-style: none;
+        display: flex;
+
+        li {
+            &:not(:first-of-type) {
+                margin-left: 12px;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+
+                &.active {
+                    font-weight: bold;
+                }
+
+                &:hover {
+                    color: gold;
+                }
+            }
+        }
+    }
+}
+
+main {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }

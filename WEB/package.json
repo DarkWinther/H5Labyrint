@@ -25,6 +25,7 @@
     "gulp-uglify": "^3.0.2",
     "gulplog": "^1.0.0",
     "nodemon": "^2.0.4",
+    "phaser": "^3.24.1",
     "typescript": "^3.2.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
@@ -33,7 +34,6 @@
   "dependencies": {
     "axios": "^0.20.0",
     "express": "^4.17.1",
-    "phaser": "^3.24.1",
     "pug": "^3.0.0"
   }
 }
