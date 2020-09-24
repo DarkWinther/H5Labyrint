@@ -19,5 +19,3 @@ export interface StatisticsDTO {
     traversal: Traversal,
     millisecondsSpent: number
 }
-
-const keepMe = {};

@@ -78,7 +78,7 @@
     <Folder Include="src\views\partials\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\models\labyrinth.d.ts">
+    <TypeScriptCompile Include="src\models\labyrinth.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\routes\apiRoutes.ts">
