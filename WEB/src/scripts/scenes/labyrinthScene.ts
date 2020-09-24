@@ -21,7 +21,7 @@ export class LabyrinthScene extends Phaser.Scene {
 
                     if (typeof labyrinthData.onWin === 'function' && labyrinthData.current) {
                         labyrinthData.onWin({
-                            labyrinthId: labyrinthData.current.id,
+                            labyrinths_id: labyrinthData.current.id,
                             millisecondsSpent: Date.now().valueOf() - startTime.valueOf(),
                             traversal,
                         });
@@ -76,15 +76,15 @@ export class LabyrinthScene extends Phaser.Scene {
             const bg = this.add.graphics();
             bg.fillStyle(0x8c19ff);
             bg.fillRoundedRect(
-                this.sys.canvas.width / 2 - 80,
-                this.sys.canvas.height / 2 - 20,
+                this.cameras.main.centerX - 80,
+                this.cameras.main.centerY - 20,
                 160,
                 40
             );
 
             const win = this.add.text(
-                this.sys.canvas.width / 2,
-                this.sys.canvas.height / 2,
+                this.cameras.main.centerX,
+                this.cameras.main.centerY,
                 'Du har vundet!'
             );
             win.x -= win.width / 2;

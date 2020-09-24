@@ -15,7 +15,7 @@ export interface Labyrinth {
 export type Traversal = number[][];
 
 export interface StatisticsDTO {
-    labyrinthId: string;
+    labyrinths_id: string;
     traversal: Traversal,
     millisecondsSpent: number
 }
