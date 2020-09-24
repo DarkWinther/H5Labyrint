@@ -10,10 +10,29 @@ export class LabyrinthScene extends Phaser.Scene {
     }
 
     public create = () => {
-        if (labyrinthData.current?.labyrinthSpaces) {
+        if (labyrinthData.current) {
+            const startTime = Date.now();
+
+            // Utils
+            const checkWin = (tile: LabyrinthTile) => {
+                if (tile === LabyrinthTile.Goal) {
+                    this.scene.pause();
+                    textBox.setVisible(true);
+
+                    if (typeof labyrinthData.onWin === 'function' && labyrinthData.current) {
+                        labyrinthData.onWin({
+                            labyrinthId: labyrinthData.current.id,
+                            millisecondsSpent: Date.now().valueOf() - startTime.valueOf(),
+                            traversal,
+                        });
+                    }
+                }
+            }
+
             // Graphhics (Walls, start, goal)
             const graphics = this.add.graphics();
             const spaces = labyrinthData.current.labyrinthSpaces;
+            const traversal = spaces.map(row => [...row].fill(0));
 
             for (let i = 0; i < spaces.length; i++) {
                 for (let j = 0; j < spaces[i].length; j++) {
@@ -36,7 +55,6 @@ export class LabyrinthScene extends Phaser.Scene {
                 }
             }
 
-
             // Player
             const player = this.add.graphics();
             const startSpace = spaces.reduce((obj, current, index) => {
@@ -54,6 +72,27 @@ export class LabyrinthScene extends Phaser.Scene {
             player.fillStyle(0xffd500);
             player.fillCircle(16, 16, 12);
 
+            // Text
+            const bg = this.add.graphics();
+            bg.fillStyle(0x8c19ff);
+            bg.fillRoundedRect(
+                this.sys.canvas.width / 2 - 80,
+                this.sys.canvas.height / 2 - 20,
+                160,
+                40
+            );
+
+            const win = this.add.text(
+                this.sys.canvas.width / 2,
+                this.sys.canvas.height / 2,
+                'Du har vundet!'
+            );
+            win.x -= win.width / 2;
+            win.y -= win.height / 2;
+
+            const textBox = this.add.group().addMultiple([bg, win]);
+            textBox.setVisible(false);
+
             // Controls
             const goDown = (event: KeyboardEvent) => {
                 const x = player.x / FIELD_SIZE;
@@ -64,6 +103,8 @@ export class LabyrinthScene extends Phaser.Scene {
 
                     if (typeof tile === 'number' && tile !== LabyrinthTile.Wall) {
                         player.y += FIELD_SIZE;
+                        ++traversal[y + 1][x];
+                        checkWin(tile);
                     }
                 }
             };
@@ -78,6 +119,8 @@ export class LabyrinthScene extends Phaser.Scene {
 
                     if (typeof tile === 'number' && tile !== LabyrinthTile.Wall) {
                         player.y -= FIELD_SIZE;
+                        ++traversal[y - 1][x];
+                        checkWin(tile);
                     }
                 }
             };
@@ -89,6 +132,8 @@ export class LabyrinthScene extends Phaser.Scene {
 
                 if (typeof tile === 'number' && tile !== LabyrinthTile.Wall) {
                     player.x -= FIELD_SIZE;
+                    ++traversal[y][x - 1];
+                    checkWin(tile);
                 }
             };
 
@@ -99,6 +144,8 @@ export class LabyrinthScene extends Phaser.Scene {
 
                 if (typeof tile === 'number' && tile !== LabyrinthTile.Wall) {
                     player.x += FIELD_SIZE;
+                    ++traversal[y][x + 1];
+                    checkWin(tile);
                 }
             };
 
