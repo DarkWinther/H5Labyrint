@@ -46,15 +46,22 @@ namespace API.Controllers
         [HttpPost]
         public ActionResult<Labyrinth> Create(Labyrinth labyrinth)
         {
-            _labyrinthService.Create(labyrinth);
+            if (IsValidLabyrinth(labyrinth))
+            {
+                _labyrinthService.Create(labyrinth);
 
-            return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id.ToString() }, labyrinth);
+                return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id.ToString() }, labyrinth);
+            }
+            return BadRequest();
         }
 
         // PUT api/labyrinth/5
         [HttpPut("{id}")]
         public IActionResult Update(string id, Labyrinth labyrinthIn)
         {
+            if (!IsValidLabyrinth(labyrinthIn))
+                return BadRequest();
+
             var labyrinth = _labyrinthService.Get(id);
 
             if (labyrinth == null)
@@ -77,6 +84,41 @@ namespace API.Controllers
             _labyrinthService.Remove(labyrinth.Id);
 
             return NoContent();
+        }
+
+        private bool IsValidLabyrinth(Labyrinth labyrinth)
+        {
+            int Start = 0;
+            int Goal = 0;
+            int Wall = 0;
+            int Empty = 0;
+
+            foreach (LabyrinthSpace[] row in labyrinth.LabyrinthSpaces)
+            {
+                foreach (LabyrinthSpace space in row)
+                {
+                    switch (space)
+                    {
+                        case LabyrinthSpace.Empty:
+                            Empty++;
+                            break;
+                        case LabyrinthSpace.Wall:
+                            Wall++;
+                            break;
+                        case LabyrinthSpace.Start:
+                            Start++;
+                            break;
+                        case LabyrinthSpace.Goal:
+                            Goal++;
+                            break;
+                    }
+                }
+            }
+
+            if (Start == 1 && Goal >= 1)
+                return true;
+
+            return false;
         }
     }
 }
