@@ -31,12 +31,13 @@ Der skal være en database med navnet "LabyrinthDb" på port 27017.
 På den skal der være to collections en ved navn "Labyrinths" og en anden ved navn "Statistics".
 
 Labyrinths indeholder:
+	Name					string		Optional.
 	Category				string		Sværhedsgrad.
 	LabyrinthSpaces			enum[][]	Labyrintens layout. 0 er tomme felter, 1 er vægge, 2 er startpunktet, 3 er målet.
 
 Statistics indeholder:
-	LabyrinthId				string		Id'en på labyrinten forsøget var på.
-	LabyrinthGrid			int[][]		Antallet af skridt på de forskellige felter.
-	SecondsSpentOnAttempt	int			Antallet af sekunder der blev brugt på forsøget.
+	Labyrinths_id			string		Id'en på labyrinten forsøget var på.
+	Traversal				int[][]		Antallet af skridt på de forskellige felter.
+	MillisecondsSpent		int			Antallet af sekunder der blev brugt på forsøget.
 
 Der må ikke være koloner med andre navne.

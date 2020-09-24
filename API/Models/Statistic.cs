@@ -12,7 +12,9 @@ namespace API.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string LabyrinthId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonRequired]
+        public string Labyrinths_id { get; set; }
 
         public int[][] Traversal { get; set; }
         public int MillisecondsSpent { get; set; }
