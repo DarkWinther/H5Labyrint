@@ -26,7 +26,7 @@ namespace API.Controllers
             _statisticService.Get();
 
         // GET: api/Statistic/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetStatistic")]
         public ActionResult<Statistic> Get(string id)
         {
             var statistic = _statisticService.Get(id);
@@ -43,7 +43,7 @@ namespace API.Controllers
         {
             _statisticService.Create(statistic);
 
-            return CreatedAtRoute("GetStatistic", new { id = statistic.Id.ToString() }, statistic);
+            return CreatedAtRoute("GetStatistic", new { id = statistic.Id }, statistic);
         }
 
         // PUT: api/Statistic/5

@@ -31,7 +31,7 @@ namespace API.Controllers
             _labyrinthService.Get();
 
         // GET api/labyrinth/id/{id}
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{id}", Name = "GetLabyrinth")]
         public ActionResult<Labyrinth> Get(string id)
         {
             var labyrinth = _labyrinthService.Get(id);
@@ -50,7 +50,7 @@ namespace API.Controllers
             {
                 _labyrinthService.Create(labyrinth);
 
-                return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id.ToString() }, labyrinth);
+                return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id }, labyrinth);
             }
             return BadRequest();
         }
