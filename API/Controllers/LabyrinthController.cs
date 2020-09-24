@@ -88,6 +88,8 @@ namespace API.Controllers
 
         private bool IsValidLabyrinth(Labyrinth labyrinth)
         {
+            if (labyrinth.LabyrinthSpaces == null)
+                return false;
             int Start = 0;
             int Goal = 0;
             int Wall = 0;

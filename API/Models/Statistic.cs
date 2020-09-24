@@ -14,7 +14,7 @@ namespace API.Models
         public string Id { get; set; }
         public string LabyrinthId { get; set; }
 
-        public int[][] LabyrinthGrid { get; set; }
-        public int SecondsSpentOnAttempt { get; set; }
+        public int[][] Traversal { get; set; }
+        public int MillisecondsSpent { get; set; }
     }
 }
