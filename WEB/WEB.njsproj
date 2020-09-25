@@ -90,6 +90,9 @@
     <TypeScriptCompile Include="src\routes\routes.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\scripts\generator.js">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\scripts\scenes\labyrinthScene.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
