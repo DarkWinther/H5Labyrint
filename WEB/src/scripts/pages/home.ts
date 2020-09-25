@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         labyrinthData.current = labyrinth.data;
         labyrinthData.onWin = onWin;
 
-        const width = labyrinth.data.labyrinthSpaces.length * 32;
-        const height = labyrinth.data.labyrinthSpaces[0].length * 32;
+        const height = labyrinth.data.labyrinthSpaces.length * 32;
+        const width = labyrinth.data.labyrinthSpaces[0].length * 32;
         new Phaser.Game({
             type: Phaser.AUTO,
             width,
