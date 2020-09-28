@@ -1,10 +1,10 @@
 {
   "name": "web",
   "version": "0.0.0",
-  "description": "WEB",
+  "description": "Web-delen af H5 Projektet",
   "main": "server.js",
   "author": {
-    "name": ""
+    "name": "Dark Winther"
   },
   "scripts": {
     "build": "tsc --build",
