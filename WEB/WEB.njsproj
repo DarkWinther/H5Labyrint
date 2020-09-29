@@ -73,7 +73,6 @@
     <Folder Include="src\scripts\pages\" />
     <Folder Include="src\scss\" />
     <Folder Include="src\views\" />
-    <Folder Include="src\views\mixins\" />
     <Folder Include="src\views\pages\" />
     <Folder Include="src\views\partials\" />
   </ItemGroup>
