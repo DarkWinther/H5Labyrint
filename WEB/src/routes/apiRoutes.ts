@@ -22,7 +22,7 @@ const handleError = (error: any): number => {
 export const apiLabyrinth = (app: Application) => {
     app.get('/api/labyrinth/random', async (req, res) => {
         try {
-            const labyrinth = await axios(`${API}/labyrinth`);
+            const labyrinth = await axios(`${API}/labyrinth/random`);
             return res.json(labyrinth.data);
         } catch (error) {
             return res.sendStatus(handleError(error));

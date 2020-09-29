@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
+    // Disse modeller bliver brugt til at læse og gemme indholdet af appsettings.json
     public class LabyrinthDatabaseSettings : ILabyrinthDatabaseSettings
     {
         public string LabyrinthsCollectionName { get; set; }

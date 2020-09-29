@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace API
 {
-    public class Program
+    public class Program // Denne klasse er autogenereret.
     {
         public static void Main(string[] args)
         {

@@ -11,7 +11,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LabyrinthController : ControllerBase
+    public class LabyrinthController : ControllerBase   // Controlleren her bruger LabyrinthService.cs til at udføre dens opgaver.
     {
         private readonly LabyrinthService _labyrinthService;
 
@@ -22,13 +22,13 @@ namespace API.Controllers
 
         // GET: api/labyrinth
         [HttpGet]
-        public ActionResult<Labyrinth> GetRandom() =>
-            _labyrinthService.GetRandom();
-
-        // GET: api/labyrinth/all
-        [HttpGet("all")]
         public ActionResult<List<Labyrinth>> Get() =>
             _labyrinthService.Get();
+
+        // GET: api/labyrinth/random
+        [HttpGet("random")]
+        public ActionResult<Labyrinth> GetRandom() =>
+            _labyrinthService.GetRandom();
 
         // GET api/labyrinth/id/{id}
         [HttpGet("id/{id}", Name = "GetLabyrinth")]

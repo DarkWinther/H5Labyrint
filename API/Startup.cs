@@ -18,19 +18,19 @@ namespace API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // Denne metode bliver kaldt af "the runtime". Metoden bruges til at tilføjer de forskellige services som vi har lavet.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<LabyrinthDatabaseSettings>(
-                Configuration.GetSection(nameof(LabyrinthDatabaseSettings)));
+                Configuration.GetSection(nameof(LabyrinthDatabaseSettings)));   // Her kofigurere vi API'ens perspektiv af databasen udfra informationerne i appsettings.json filen.
 
             services.AddSingleton<ILabyrinthDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<LabyrinthDatabaseSettings>>().Value);
 
-            services.AddSingleton<LabyrinthService>();
-            services.AddSingleton<StatisticService>();
+            services.AddSingleton<LabyrinthService>();  // Her oprettes en enkelt instance af LabyrinthService.
+            services.AddSingleton<StatisticService>();  // Her oprettes en enkelt instance af StatisticService.
 
-            services.AddControllers();
+            services.AddControllers();  // Her tilføjes services for controllers.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

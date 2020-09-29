@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class LabyrinthDTO
+    public class LabyrinthDTO   // Work-in-progress
     {
         public LabyrinthSpace[][] LabyrinthSpaces { get; set; }
     }
