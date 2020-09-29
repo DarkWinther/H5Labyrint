@@ -20,9 +20,9 @@ namespace API.Models
     }
     public enum LabyrinthSpace
     {
-        Empty,  // 0 er et frit felt.
-        Wall,   // 1 er en væg.
-        Start,  // 2 er start feltet.
-        Goal    // 3 er målet.
+        Empty,  // 0 er et frit felt
+        Wall,   // 1 er en væg
+        Start,  // 2 er start feltet
+        Goal    // 3 er målet
     }
 }

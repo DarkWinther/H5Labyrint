@@ -11,7 +11,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LabyrinthController : ControllerBase   // Controlleren her bruger LabyrinthService.cs til at udføre dens opgaver.
+    public class LabyrinthController : ControllerBase   // Controlleren her bruger LabyrinthService.cs til kommunikation med databasen
     {
         private readonly LabyrinthService _labyrinthService;
 
@@ -23,77 +23,78 @@ namespace API.Controllers
         // GET: api/labyrinth
         [HttpGet]
         public ActionResult<List<Labyrinth>> Get() =>
-            _labyrinthService.Get();
+            _labyrinthService.Get();    // Hent alle labyrinter
 
         // GET: api/labyrinth/random
         [HttpGet("random")]
         public ActionResult<Labyrinth> GetRandom() =>
-            _labyrinthService.GetRandom();
+            _labyrinthService.GetRandom();  // Hent en tilfældig labyrint
 
         // GET api/labyrinth/id/{id}
         [HttpGet("id/{id}", Name = "GetLabyrinth")]
         public ActionResult<Labyrinth> Get(string id)
         {
-            var labyrinth = _labyrinthService.Get(id);
+            var labyrinth = _labyrinthService.Get(id);  // Hent labyrinten vha. id
 
             if (labyrinth == null)
-                return NotFound();
+                return NotFound();  // Hvis labyrinten ikke eksisterer så send en HTTP 404
 
-            return labyrinth;
+            return labyrinth;   // Send labyrinten tilbage
         }
 
         // POST api/labyrinth
         [HttpPost]
         public ActionResult<Labyrinth> Create(Labyrinth labyrinth)
         {
-            if (IsValidLabyrinth(labyrinth))
+            if (IsValidLabyrinth(labyrinth))    // Check om labyrinten er gyldig
             {
-                _labyrinthService.Create(labyrinth);
+                _labyrinthService.Create(labyrinth);    // Opret labyrinten
 
-                return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id }, labyrinth);
+                return CreatedAtRoute("GetLabyrinth", new { id = labyrinth.Id }, labyrinth);    // Hvis labyrinten blev oprettet så send en HTTP 201 med labyrinten i
             }
-            return BadRequest();
+            return BadRequest();    // Hvis labyrinten ikke er gyldig så send en HTTP 400
         }
 
         // PUT api/labyrinth/5
         [HttpPut("{id}")]
         public IActionResult Update(string id, Labyrinth labyrinthIn)
         {
-            if (!IsValidLabyrinth(labyrinthIn))
-                return BadRequest();
+            if (!IsValidLabyrinth(labyrinthIn)) // Check om labyrinten er gyldig
+                return BadRequest();    // Hvis labyrinten ikke eksisterer så send en HTTP 404
 
-            var labyrinth = _labyrinthService.Get(id);
+            var labyrinth = _labyrinthService.Get(id);  // Hent labyrinten vha. id
 
             if (labyrinth == null)
-                return NotFound();
+                return NotFound();  // Hvis labyrinten ikke eksisterer så send en HTTP 404
 
-            _labyrinthService.Update(id, labyrinthIn);
+            _labyrinthService.Update(id, labyrinthIn);  // Opdater labyrinten
 
-            return NoContent();
+            return NoContent();     // Hvis labyrinten blev opdateret så send en HTTP 204
         }
 
         // DELETE api/labyrinth/5
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var labyrinth = _labyrinthService.Get(id);
+            var labyrinth = _labyrinthService.Get(id);  // Hent labyrinten vha. id
 
             if (labyrinth == null)
-                return NotFound();
+                return NotFound();  // Hvis labyrinten ikke eksisterer så send en HTTP 404
 
-            _labyrinthService.Remove(labyrinth.Id);
+            _labyrinthService.Remove(labyrinth.Id);     // Slet labyrinten
 
-            return NoContent();
+            return NoContent();     // Hvis labyrinten blev slettet så send en HTTP 204
         }
 
         private bool IsValidLabyrinth(Labyrinth labyrinth)
         {
             if (labyrinth.LabyrinthSpaces == null)
-                return false;
-            int Start = 0;
-            int Goal = 0;
-            int Wall = 0;
-            int Empty = 0;
+                return false;   // Hvis "labyrinth" ikke har nogen labyrint så returner false
+
+            int Start = 0;  // Antallet af start felter
+            int Goal = 0;   // Antallet af mål
+            int Wall = 0;   // Antallet af vægge
+            int Empty = 0;  // Antallet af tomme felter
 
             foreach (LabyrinthSpace[] row in labyrinth.LabyrinthSpaces)
             {
@@ -117,7 +118,7 @@ namespace API.Controllers
                 }
             }
 
-            if (Start == 1 && Goal >= 1)
+            if (Start == 1 && Goal >= 1)    // Der skal være et start felt og mindst et mål
                 return true;
 
             return false;
