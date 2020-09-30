@@ -16,6 +16,7 @@ namespace API.Models
         [BsonElement("Name")]   // Fortæller API'en at LabyrinthName hedder Name på serveren.
         public string LabyrinthName { get; set; }   // Både Name og Category må gerne være null.
         public string Category { get; set; }
+        [BsonRequired]
         public LabyrinthSpace[][] LabyrinthSpaces { get; set; } // I dette array er labyrintens felter gemt.
     }
     public enum LabyrinthSpace

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="API.Controllers.LabyrinthController">
+    <Position X="3" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAABAgABAAAAAAAAAAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\LabyrinthController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_labyrinthService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Controllers.StatisticController">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAAAAAABAAAAAAAAAAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\StatisticController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_statisticService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Models.Labyrinth">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAA=</HashCode>
+      <FileName>Models\Labyrinth.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="LabyrinthSpaces" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="API.Models.LabyrinthDatabaseSettings" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAQAACAAAAABAAA=</HashCode>
+      <FileName>Models\LabyrinthDatabaseSettings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="API.Models.Statistic">
+    <Position X="7.25" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACBAAAAQAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Statistic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Services.LabyrinthService">
+    <Position X="7.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAABAAABAAAAABAAAAAAAAEAAAAAAAEAAAAA=</HashCode>
+      <FileName>Services\LabyrinthService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Services.StatisticService">
+    <Position X="3.75" Y="6" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAABAAAAABBAAAAAAAEAAAAAAAACAAAA=</HashCode>
+      <FileName>Services\StatisticService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Program">
+    <Position X="3.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Startup">
+    <Position X="6.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="API.Models.ILabyrinthDatabaseSettings">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAQAACAAAAABAAA=</HashCode>
+      <FileName>Models\LabyrinthDatabaseSettings.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="API.Models.LabyrinthSpace">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAAAAAIAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Labyrinth.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
